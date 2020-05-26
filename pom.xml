@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--继承 SpringBoot 框架的一个父项目，所有自己开发的 Spring Boot 都必须的继承-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.7.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <!--当前项目的 GAV 坐标-->
+    <groupId>com.chen.springboot</groupId>
+    <artifactId>springboot01</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>springboot01</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>14</java.version>
+    </properties>
+    <dependencies>
+        <!--springboot项目起步依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--SpringBoot 框架的测试起步依赖，例如：junit 测试，如果不需要的话可以删除-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+    <build>
+        <!--spring默认的前端引擎是thymeleaf，我们现在要用springboot集成jsp
+            手动指定jsp最后的编译路径，而且springboot继承jsp编译jsp的路径是springboot规定好的位置
+            META-INF/resources
+        -->
+        <resources>
+            <resource>
+                <!--源文件夹-->
+                <directory>src/main/webapp</directory>
+                <!--指定编译到META-INF/resources-->
+                <targetPath>META-INF/resources</targetPath>
+                <!--指定源文件夹中的呢那个资源要编译进行-->
+                <includes>
+                    <include>*.*</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <!--SpringBoot 提供的打包编译等插件-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
